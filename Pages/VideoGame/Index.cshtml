@@ -1,0 +1,78 @@
+﻿@page "{searchString?}"
+@model RazorPagesVideoGameDB.Pages.VideoGame.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form>
+    <p>
+        @*<select asp-for="Platform" asp-items="Model.Platform">
+            <option value="">All</option>
+        </select>*@
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoGameModel[0].GameTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoGameModel[0].ReleaseYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoGameModel[0].Platform)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoGameModel[0].Publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoGameModel[0].CompleteCopy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoGameModel[0].PhysicalCopy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.VideoGameModel)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Platform)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publisher)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompleteCopy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhysicalCopy)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
